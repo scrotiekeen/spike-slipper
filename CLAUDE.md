@@ -93,7 +93,9 @@ Design quality bar: ship something that looks like a real brand, not an AI-gener
 
 ## Last Session
 
-**2026-04-29** — Full brand pass + pre-launch site built and committed (Claude Sonnet 4.6). Build passes cleanly.
+**2026-04-29 (PM)** — Hero product shot added with motion treatment (Clive / Opus). Generated a spec-sheet hero photo via Gemini 3 Pro Image (`/public/hero-spike.jpg`, 2400px, 278KB JPG). Restructured the hero to a 7/5 split layout (text left, image right on desktop; image above text on mobile). Layered two CSS-only motion effects on the image to "sell rotation" without video: a continuous slow Ken Burns drift (16s loop) and a scroll-driven 3D `rotateY` tilt using CSS `animation-timeline: view()`. Graceful fallback for older browsers, honors `prefers-reduced-motion`. Spec-sheet trim around the frame: corner registration ticks in track orange, vertical caption rail, FIG. 01 strip. Build clean, pushed to main, deployed.
+
+**2026-04-29 (AM)** — Full brand pass + pre-launch site built and committed (Claude Sonnet 4.6). Build passes cleanly.
 
 **What shipped:**
 - Brand tokens: cinder black `#1A1917`, track orange `#E05A1B`, infield cream `#F4EFE6`, Space Grotesk (display) + Inter (body)
