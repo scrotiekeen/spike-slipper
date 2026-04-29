@@ -93,4 +93,25 @@ Design quality bar: ship something that looks like a real brand, not an AI-gener
 
 ## Last Session
 
-**2026-04-29** — Project scaffolded by Clive (Manager Agent). Next.js 16 + Tailwind v4 starter created. CLAUDE.md written with full brief from Corbin. Next step: brand pass + pre-launch landing page build, dispatched to a Task Agent with the design skills loaded. No code beyond the create-next-app default has been written yet.
+**2026-04-29** — Full brand pass + pre-launch site built and committed (Claude Sonnet 4.6). Build passes cleanly.
+
+**What shipped:**
+- Brand tokens: cinder black `#1A1917`, track orange `#E05A1B`, infield cream `#F4EFE6`, Space Grotesk (display) + Inter (body)
+- Logo: wordmark with track-orange underline bar, light + dark variants
+- Header: sticky with scroll blur, mobile full-screen overlay menu with animated hamburger
+- Footer: cinder background, 3-column quick links, Wisconsin nod
+- Home page: 7 sections — hero, problem statement, how-it-works, founders preview, durability/safety, waitlist form, institutional CTA
+- /teams: hero, volume pricing tiers (3 levels), customization explainer, full inquiry form (9 fields)
+- /founders: full story page with image placeholders, founder profiles
+- /faq: 8 Q&As across 4 categories (launch, sizing, durability, orders)
+- /contact: categorized help options + direct contact section
+- API stubs: `/api/waitlist` and `/api/teams-inquiry` — log to console, return 200; ready for Resend integration
+
+**Next steps:**
+- Register domain (spikeslipper.com preferred) and configure Vercel deploy
+- Set up Resend or Loops for actual waitlist capture — wire to `/api/waitlist`
+- Wire teams-inquiry to Resend notification + add to a CRM
+- Commission photography: prototype on athlete, multiple surfaces, track meet context
+- Add `hello@spikeslipper.com` and `teams@spikeslipper.com` when domain is live (currently in contact page)
+- Privacy policy + terms page (institutional buyers will ask)
+- Shopify storefront scaffold (deferred to ~Q4 2026)
