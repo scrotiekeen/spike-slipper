@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 
@@ -153,14 +152,19 @@ export default function HomePage() {
                 </div>
 
                 <div className="hero-shoe-frame relative aspect-[4/5] w-full overflow-hidden bg-cinder">
-                  <Image
-                    src="/hero-spike.jpg"
-                    alt="Spike Slipper protective cover fitted over a track racing spike, studio lighting on a concrete plinth"
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 40vw, 90vw"
-                    className="hero-shoe-img object-cover"
-                  />
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    poster="/hero-spike.jpg"
+                    aria-label="Spike Slipper protective cover fitted over a track racing spike, rotating turntable view across all angles"
+                    className="hero-shoe-img absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source src="/hero-turntable.webm" type="video/webm" />
+                    <source src="/hero-turntable.mp4" type="video/mp4" />
+                  </video>
                   {/* subtle inner shadow for depth */}
                   <div
                     className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(0,0,0,0.55)]"

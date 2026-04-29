@@ -30,24 +30,20 @@ body {
 }
 
 /* ──────────────────────────────────────────────────────────────
-   Hero shoe motion — slow ambient Ken Burns drift + scroll-driven
-   3D tilt. The motion sells the product as a tangible object
-   without needing video. Two layers compose:
-     1. .hero-shoe-img runs a continuous slow zoom/pan (Ken Burns)
-     2. .hero-shoe-frame runs a scroll-driven rotateY tilt
-   Falls back gracefully on browsers without scroll-driven
-   animations (Ken Burns alone). Honors reduced-motion.
+   Hero shoe motion — the video itself handles the turntable
+   rotation. We layer a subtle scroll-driven 3D tilt on the frame
+   to add dimensional feel as the user scrolls past, plus a barely
+   perceptible scale "breathe" for ambient liveness. Falls back
+   gracefully on browsers without scroll-driven animations.
+   Honors reduced-motion.
    ────────────────────────────────────────────────────────────── */
 
-@keyframes hero-shoe-drift {
-  0% {
-    transform: scale(1.02) translate3d(0, 0, 0);
+@keyframes hero-shoe-breathe {
+  0%, 100% {
+    transform: scale(1.01);
   }
   50% {
-    transform: scale(1.06) translate3d(-1.2%, -1.5%, 0);
-  }
-  100% {
-    transform: scale(1.02) translate3d(0, 0, 0);
+    transform: scale(1.035);
   }
 }
 
@@ -56,24 +52,29 @@ body {
   perspective-origin: 50% 50%;
   transform-style: preserve-3d;
   will-change: transform;
+  /* fallback poster behind the video — also visible if reduced-motion hides
+     the video, or while the video is loading */
+  background-image: url("/hero-spike.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .hero-shoe-img {
-  animation: hero-shoe-drift 16s ease-in-out infinite;
-  transform-origin: 55% 45%;
+  animation: hero-shoe-breathe 12s ease-in-out infinite;
+  transform-origin: 50% 50%;
   will-change: transform;
 }
 
 @supports (animation-timeline: view()) {
   @keyframes hero-shoe-tilt {
     0% {
-      transform: rotateY(-7deg) rotateX(2deg);
+      transform: rotateY(-6deg) rotateX(2deg);
     }
     50% {
       transform: rotateY(0deg) rotateX(0deg);
     }
     100% {
-      transform: rotateY(7deg) rotateX(-2deg);
+      transform: rotateY(6deg) rotateX(-2deg);
     }
   }
 
@@ -90,5 +91,9 @@ body {
   }
   .hero-shoe-frame {
     animation: none;
+  }
+  /* also pause the turntable video when reduced-motion is set */
+  .hero-shoe-frame video {
+    display: none;
   }
 }
