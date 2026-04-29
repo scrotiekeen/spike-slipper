@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import WaitlistForm from "@/components/WaitlistForm";
 
@@ -76,60 +77,110 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="bg-cinder text-chalk min-h-[92vh] flex flex-col justify-center relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-          <p className="text-xs uppercase tracking-[0.3em] text-track mb-6 font-medium">
-            Coming Spring 2027
-          </p>
+      <section className="bg-cinder text-chalk min-h-[92vh] flex items-center relative overflow-hidden">
+        {/* ambient orange wash behind the shoe — barely perceptible */}
+        <div
+          className="pointer-events-none absolute -right-[10%] top-1/2 -translate-y-1/2 w-[60%] aspect-square rounded-full bg-[radial-gradient(circle,rgba(224,90,27,0.18)_0%,rgba(224,90,27,0)_60%)] blur-3xl"
+          aria-hidden="true"
+        />
 
-          <div className="mb-4 w-12 h-[3px] bg-track" aria-hidden="true" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+            {/* Text column */}
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <p className="text-xs uppercase tracking-[0.3em] text-track mb-6 font-medium">
+                Coming Spring 2027
+              </p>
 
-          <h1 className="font-display font-bold text-5xl sm:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight uppercase mb-8 max-w-3xl">
-            Protect
-            <br />
-            Your Spikes.
-            <br />
-            <span className="text-track">Walk Anywhere.</span>
-          </h1>
+              <div className="mb-4 w-12 h-[3px] bg-track" aria-hidden="true" />
 
-          <p className="text-chalk/60 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed">
-            The slip-on protective cover for track &amp; field spike shoes. Designed
-            by distance runners who got tired of choosing between their pins and the
-            floor.
-          </p>
+              <h1 className="font-display font-bold text-5xl sm:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight uppercase mb-8">
+                Protect
+                <br />
+                Your Spikes.
+                <br />
+                <span className="text-track">Walk Anywhere.</span>
+              </h1>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#waitlist"
-              className="inline-flex items-center justify-center px-8 py-4 bg-track text-chalk text-sm font-medium uppercase tracking-widest hover:bg-track/90 transition-colors"
-            >
-              Join the Waitlist
-            </a>
-            <Link
-              href="/teams"
-              className="inline-flex items-center justify-center px-8 py-4 border border-chalk/30 text-chalk text-sm font-medium uppercase tracking-widest hover:border-chalk/70 transition-colors"
-            >
-              For Teams &amp; Programs →
-            </Link>
-          </div>
+              <p className="text-chalk/60 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed">
+                The slip-on protective cover for track &amp; field spike shoes. Designed
+                by distance runners who got tired of choosing between their pins and the
+                floor.
+              </p>
 
-          <div className="mt-16 grid grid-cols-3 gap-6 max-w-sm border-t border-chalk/10 pt-10">
-            {(
-              [
-                ["$15–$40", "vs. $40–$80 competitors"],
-                ["2-layer", "material system"],
-                ["2027", "spring launch"],
-              ] as [string, string][]
-            ).map(([stat, label]) => (
-              <div key={stat}>
-                <p className="font-display font-bold text-2xl sm:text-3xl text-chalk">
-                  {stat}
-                </p>
-                <p className="text-[10px] uppercase tracking-widest text-chalk/40 mt-0.5 leading-snug">
-                  {label}
-                </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#waitlist"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-track text-chalk text-sm font-medium uppercase tracking-widest hover:bg-track/90 transition-colors"
+                >
+                  Join the Waitlist
+                </a>
+                <Link
+                  href="/teams"
+                  className="inline-flex items-center justify-center px-8 py-4 border border-chalk/30 text-chalk text-sm font-medium uppercase tracking-widest hover:border-chalk/70 transition-colors"
+                >
+                  For Teams &amp; Programs →
+                </Link>
               </div>
-            ))}
+
+              <div className="mt-16 grid grid-cols-3 gap-6 max-w-sm border-t border-chalk/10 pt-10">
+                {(
+                  [
+                    ["$15–$40", "vs. $40–$80 competitors"],
+                    ["2-layer", "material system"],
+                    ["2027", "spring launch"],
+                  ] as [string, string][]
+                ).map(([stat, label]) => (
+                  <div key={stat}>
+                    <p className="font-display font-bold text-2xl sm:text-3xl text-chalk">
+                      {stat}
+                    </p>
+                    <p className="text-[10px] uppercase tracking-widest text-chalk/40 mt-0.5 leading-snug">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Image column — spec-sheet hero shot with ambient drift + scroll-driven 3D tilt */}
+            <div className="lg:col-span-5 order-1 lg:order-2">
+              <div className="hero-shoe relative mx-auto max-w-sm sm:max-w-md lg:max-w-none lg:ml-auto">
+                {/* spec-sheet caption rail */}
+                <div className="hidden lg:flex absolute -left-3 top-0 bottom-0 flex-col justify-between text-[9px] tracking-[0.3em] uppercase text-chalk/30 font-medium [writing-mode:vertical-rl] rotate-180">
+                  <span>Prototype · 03A</span>
+                  <span>4:5 · Studio</span>
+                </div>
+
+                <div className="hero-shoe-frame relative aspect-[4/5] w-full overflow-hidden bg-cinder">
+                  <Image
+                    src="/hero-spike.jpg"
+                    alt="Spike Slipper protective cover fitted over a track racing spike, studio lighting on a concrete plinth"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 40vw, 90vw"
+                    className="hero-shoe-img object-cover"
+                  />
+                  {/* subtle inner shadow for depth */}
+                  <div
+                    className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(0,0,0,0.55)]"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                {/* corner registration ticks */}
+                <span aria-hidden className="absolute -top-px -left-px w-3 h-3 border-l border-t border-track/70" />
+                <span aria-hidden className="absolute -top-px -right-px w-3 h-3 border-r border-t border-track/70" />
+                <span aria-hidden className="absolute -bottom-px -left-px w-3 h-3 border-l border-b border-track/70" />
+                <span aria-hidden className="absolute -bottom-px -right-px w-3 h-3 border-r border-b border-track/70" />
+
+                {/* spec strip below */}
+                <div className="mt-3 flex items-center justify-between text-[10px] uppercase tracking-[0.25em] text-chalk/40">
+                  <span>FIG. 01 — Cover, fitted</span>
+                  <span className="font-mono tabular-nums">SS-01 · 2027</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

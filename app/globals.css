@@ -28,3 +28,67 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* ──────────────────────────────────────────────────────────────
+   Hero shoe motion — slow ambient Ken Burns drift + scroll-driven
+   3D tilt. The motion sells the product as a tangible object
+   without needing video. Two layers compose:
+     1. .hero-shoe-img runs a continuous slow zoom/pan (Ken Burns)
+     2. .hero-shoe-frame runs a scroll-driven rotateY tilt
+   Falls back gracefully on browsers without scroll-driven
+   animations (Ken Burns alone). Honors reduced-motion.
+   ────────────────────────────────────────────────────────────── */
+
+@keyframes hero-shoe-drift {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.06) translate3d(-1.2%, -1.5%, 0);
+  }
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+}
+
+.hero-shoe-frame {
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-shoe-img {
+  animation: hero-shoe-drift 16s ease-in-out infinite;
+  transform-origin: 55% 45%;
+  will-change: transform;
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes hero-shoe-tilt {
+    0% {
+      transform: rotateY(-7deg) rotateX(2deg);
+    }
+    50% {
+      transform: rotateY(0deg) rotateX(0deg);
+    }
+    100% {
+      transform: rotateY(7deg) rotateX(-2deg);
+    }
+  }
+
+  .hero-shoe-frame {
+    animation: hero-shoe-tilt linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-shoe-img {
+    animation: none;
+  }
+  .hero-shoe-frame {
+    animation: none;
+  }
+}
